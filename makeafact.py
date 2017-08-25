@@ -1,44 +1,13 @@
 # coding: utf-8
-from nider.core import Font
-from nider.core import Outline
-from nider.models import Header
-from nider.models import Paragraph
-from nider.models import Content
-from nider.models import Linkback
-from nider.models import Image
-from PIL import ImageEnhance
-from PIL import ImageFilter
+import argparse
+from factos import facts
 
-def fact_gen(query, fact, linkback = 'learnafact.fun | @learnafunfact'):
-    roboto_font_folder = './fonts/Roboto/'
-    outline = Outline(2, '#121212')
+parser = argparse.ArgumentParser()
+parser.parse_args()
 
-    para = Paragraph( text=fact,
-        font = Font(roboto_font_folder + 'Roboto-Medium.ttf', 55),
-        text_width = 30,
-        align='left',
-        color='#ededed', 
-        outline=outline,
-        )
+fact = facts(1)
 
-    linkback = Linkback(text= str(linkback),
-        font = Font(roboto_font_folder + 'Roboto-Bold.ttf', 18),
-        color = '#ededed',
-        bottom_padding = 300,
-        outline=outline
-        )
+print( "Fact:\n {}\n".format(fact[0][0]))
+print( "URL:\n{}".format(fact[0][1]))
+print( "id:{}".format(fact[0][2]))
 
-    content = Content(para, linkback)
-
-    img = Image(content,
-        fullpath = './images/' + query + '-fact.png',
-        width=1080,
-        height=720
-        )
-    
-    img.draw_on_image('./images/'+query+'.jpg',
-    image_enhancements=((ImageEnhance.Contrast, 0.75),
-    (ImageEnhance.Brightness, 0.75)),
-    image_filters=((ImageFilter.BLUR),)
-    )
-    return True

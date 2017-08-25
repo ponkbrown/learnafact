@@ -1,9 +1,9 @@
 # coding: utf-8
 from getimages import get_image , download_image
-from makeafact import fact_gen
-query = 'lion'
-fact = '''10,000 years ago Lions were the second most widespread land mammal, after humans. They existed across Africa, Eurasia and America.'''
+from cardgenerator import card_gen
+query = 'beer'
+fact = '''A 'schooner' of beer is really different depending on where you order. In Canada it is always big but in Australia it is usually small.'''
 url = get_image(query)
 download_image(url, query) 
 
-fact_gen(query,fact)
+card_gen(query,fact)
