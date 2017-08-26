@@ -2,12 +2,15 @@
 import shelve
 import random
 
+# carga los facts que estan grabados en submisions.db son facts generados con la biblioteca praw
+# las credenciales en el archivo redditrobot.py
+
 d = shelve.open('submisions')
 factos = d['subs']
 d.close()
 
 def facts(num):
-    ''' Regresa una lista con tuplas ( fact, url, reddit_id) '''
+    ''' Regresa una lista con [num] de tuplas ( fact, url, reddit_id) '''
     lista = []
     for five in range(num):
 

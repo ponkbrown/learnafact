@@ -11,6 +11,8 @@ unsplash = Unsplash({
 })
 
 def get_image(query):
+    ''' Busca en unsplash imagenes de [query] selecciona una aleatoria y devuelve la url de la imagen '''
+
     fotos = unsplash.photos().search_photos(
     query = query,
     page=1,
@@ -26,6 +28,8 @@ def get_image(query):
 
 
 def download_image(url, filename):
+    ''' recibe una [url] y la guarda como [filename].jpg '''
+
     response = requests.get(url, stream=True)
     with open('./images/'+filename+'.jpg', 'wb') as out_file:
         shutil.copyfileobj(response.raw, out_file)

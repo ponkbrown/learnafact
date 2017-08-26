@@ -10,6 +10,10 @@ from PIL import ImageEnhance
 from PIL import ImageFilter
 
 def card_gen(query, fact, linkback = 'learnafact.fun | @learnafunfact'):
+    ''' Genera una tarjeta ./images/[query]-fact.jpg a partir de  la imagen ./[query].jpg y el
+    fact que se le envia en forma de texto. Opcional puedes agregar tu linkback pero si le mandas
+    nada usa 'learnafact.fun' '''
+
     roboto_font_folder = './fonts/Roboto/'
     outline = Outline(2, '#121212')
 
