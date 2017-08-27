@@ -21,6 +21,10 @@ def get_image(query):
     
     fotos.keys()
     results= fotos['results']
+    # Si no encuentra nada la busqueda regresa 0
+    if not results:
+        return 0
+
     foto = results[random.randint(0,len(results)-1)]
     user = foto['user']
     url = foto['urls']['regular']
