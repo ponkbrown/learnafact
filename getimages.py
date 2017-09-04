@@ -19,8 +19,8 @@ def get_image(query):
     per_page=20
     )
     
-    fotos.keys()
-    results= fotos['results']
+    if 'results' in fotos:
+        results= fotos['results']
     # Si no encuentra nada la busqueda regresa 0
     if not results:
         return 0
