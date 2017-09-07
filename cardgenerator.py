@@ -10,7 +10,7 @@ from PIL import ImageEnhance
 from PIL import ImageFilter
 import webbrowser
 
-def card_gen(query, fact, linkback = 'learnafact.fun | @learnafunfact'):
+def card_gen(query, fact, linkback = 'learnfacts.fun | @learnafunfact'):
     ''' Genera una tarjeta ./images/[query]-fact.jpg a partir de  la imagen ./images/[query].jpg y el
     fact que se le envia en forma de texto. Opcional puedes agregar tu linkback pero si le mandas
     nada usa 'learnafact.fun' '''
@@ -33,7 +33,7 @@ def card_gen(query, fact, linkback = 'learnafact.fun | @learnafunfact'):
         )
     content = Content(para, linkback)
     img = Image(content,
-        fullpath = './images/' + query + '-fact.png',
+        fullpath = './facts/' + query + '-fact.png',
         width=1080,
         height=720
         )
@@ -43,7 +43,7 @@ def card_gen(query, fact, linkback = 'learnafact.fun | @learnafunfact'):
     image_filters=((ImageFilter.BLUR),)
     )
     try:
-        webbrowser.open('./images/'+query+'-fact.png')
+        webbrowser.open('./facts/'+query+'-fact.png')
     except:
         pass
     return True
