@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 # coding: utf-8
 import argparse
 from factos import getfacts
@@ -7,6 +8,7 @@ import pdb
 
 def carding(fact):
     ''' Shows the fact and prompt for theme for an image'''
+    print(fact[0])
     query = input('Image theme:')
     image_url = get_image(query)
     if image_url == 0:
@@ -14,7 +16,7 @@ def carding(fact):
         exit()
     else:
         download_image(image_url, query)
-        card_gen(query, fact)
+        card_gen(query, fact[0])
 
     print(query)
     
@@ -42,4 +44,4 @@ if args.i:
         
     print('\n\n'+fact[0]+'\n')
     input('Press Enter to Continue')
-    carding(fact[0])
+    carding(fact)
