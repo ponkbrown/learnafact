@@ -27,10 +27,11 @@ def get_image(query):
 
 
 def download_image(url, filename):
-    ''' recibe una [url] y la guarda como [filename].jpg '''
+    ''' recibe una [url] y la guarda como ./images/[filename].jpg '''
 
     response = requests.get(url, stream=True)
     with open('./images/'+filename+'.jpg', 'wb') as out_file:
         shutil.copyfileobj(response.raw, out_file)
     del response
-    return True
+    return ('./images/' + filename + '.jpg')
+

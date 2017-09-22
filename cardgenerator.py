@@ -8,12 +8,14 @@ from nider.models import Linkback
 from nider.models import Image
 from PIL import ImageEnhance
 from PIL import ImageFilter
-import webbrowser
 
-def card_gen(query, fact, linkback = 'learnfacts.fun | @learnafunfact'):
-    ''' Genera una tarjeta ./images/[query]-fact.jpg a partir de  la imagen ./images/[query].jpg y el
+def card_gen(image, name,  fact, linkback = 'learnfacts.fun | @learnafunfact'):
+    ''' Genera una tarjeta ./facts_imgs/[query]-fact.jpg a partir de  la imagen ./images/[query].jpg y el
     fact que se le envia en forma de texto. Opcional puedes agregar tu linkback pero si le mandas
-    nada usa 'learnafact.fun' '''
+    nada usa 'learnafact.fun' 
+    '''
+
+    fact_img = './facts_imgs/' + name + '-fact.png'
 
     roboto_font_folder = './fonts/Roboto/'
     outline = Outline(2, '#121212')
@@ -33,17 +35,13 @@ def card_gen(query, fact, linkback = 'learnfacts.fun | @learnafunfact'):
         )
     content = Content(para, linkback)
     img = Image(content,
-        fullpath = './facts/' + query + '-fact.png',
+        fullpath = fact_img,
         width=1080,
         height=720
         )
-    img.draw_on_image('./images/'+query+'.jpg',
+    img.draw_on_image(image,
     image_enhancements=((ImageEnhance.Contrast, 0.75),
     (ImageEnhance.Brightness, 0.75)),
     image_filters=((ImageFilter.BLUR),)
     )
-    try:
-        webbrowser.open('./facts/'+query+'-fact.png')
-    except:
-        pass
-    return True
+    return ({ 'image':image, 'fact_img': fact_img})
