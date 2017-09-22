@@ -64,7 +64,6 @@ data['name'] = name
 data['date'] = datetime.now()
 data['fact'] = text
 data['fact_img'] = card['fact_img']
-data['fact_img'] = ''
 data['url'] = subm.url
 data['reddit_id'] = subm.id
 data['img_id'] = foto['id']
