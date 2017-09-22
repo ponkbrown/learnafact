@@ -36,16 +36,20 @@ elif text.startswith('til'):
 textblob = TextBlob(text)
 names = []
 for pname,tag in textblob.tags:
-    if tag.startswith('NN'):
+    if tag == ('NN'):
         names.append(pname)
 
 # shuffling the names list and searching for an image in unsplash
 random.shuffle(names)
 for name in names:
-    fotos = unsplash.photos().search_photos(
-    query = name,
-    per_page=20
-    )['results']
+    # Arreglando un error que unsplash me devuelve un nonetype
+    fotos = None
+    while fotos == None:
+        fotos = unsplash.photos().search_photos(
+        query = name,
+        per_page=20
+        )
+    fotos = fotos['results']
     if len(fotos) == 0:
         continue
     foto = random.choice(fotos)
